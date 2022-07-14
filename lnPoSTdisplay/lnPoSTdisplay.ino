@@ -1374,8 +1374,6 @@ bool getInvoice()
   }
   const char *lnbitsServerChar = lnbitsServer.c_str();
   const char *invoiceChar = invoice.c_str();
-  const char *lncurrencyChar = lncurrency.c_str();
-
 
   if (!client.connect(lnbitsServerChar, 443))
   {
@@ -1385,9 +1383,7 @@ bool getInvoice()
     return false;
   }
 
-  const String toMemo = "name of the webshop (" + invoiceChar + " " + lncurrencyChar+ ")"
-  //TODO: make name of webshop dynamic, to be configured in setup
-  const String toPost = "{\"out\": false,\"amount\" : " + String(noSats.toInt()) + ", \"memo\" :\"" + String(toMemo) + "\"}";
+  const String toPost = "{\"out\": false,\"amount\" : " + String(noSats.toInt()) + ", \"memo\" :\"Demo LNPos (" + String(amountToShow) + " " + String(lncurrency) + ")\"}";
   const String url = "/api/v1/payments";
   client.print(String("POST ") + url + " HTTP/1.1\r\n" +
                "Host: " + lnbitsServerChar + "\r\n" +
