@@ -278,10 +278,7 @@ void setup()
     const JsonObject maRoot = doc[1];
     const char *masterKeyChar = maRoot["value"];
     masterKey = masterKeyChar;
-    if (masterKey != "")
-    {
-      menuItemCheck[2] = 1;
-    }
+
 
     const JsonObject serverRoot = doc[2];
     const char *serverChar = serverRoot["value"];
@@ -1383,7 +1380,7 @@ bool getInvoice()
     return false;
   }
 
-  const String toPost = "{\"out\": false,\"amount\" : " + String(noSats.toInt()) + ", \"memo\" :\"Demo LNPos (" + String(amountToShow) + " " + String(lncurrency) + ")\"}";
+  const String toPost = "{\"out\": false,\"amount\" : " + String(noSats.toInt()) + ", \"memo\" :\"POS " + String(masterKey) + " (" + String(amountToShow) + " " + String(lncurrency) + ")\"}";
   const String url = "/api/v1/payments";
   client.print(String("POST ") + url + " HTTP/1.1\r\n" +
                "Host: " + lnbitsServerChar + "\r\n" +
